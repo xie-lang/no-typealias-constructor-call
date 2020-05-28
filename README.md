@@ -2,7 +2,7 @@
 
 
 
-A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rule that disallows the use of Application Expression for Type Alias
+A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rule that forbids using type alias record constructors to create a record. This rule does not apply to the `map*` functions in `Json.Decode`. 
 
 
 For example, in the following code
@@ -58,7 +58,7 @@ config =
 ```
 ## Caution
 
-This rule does not apply to `map2` from `Json.Decode`, so the following code will NOT report an error
+This rule does not apply to the `map` functions in `Json.Decode`, so the following code will NOT report an error
 
 ```elm
 type alias Point =

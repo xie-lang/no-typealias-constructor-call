@@ -62,7 +62,7 @@ To get rid of the error, do this:
 
 ## Caution
 
-This rule does not apply to `map2` from `Json.Decode`, so the following code will NOT report an error
+This rule does not apply to `map` functions in `Json.Decode`, so the following code will NOT report an error
 
     type alias Point =
         { x : Float, y : Float }
