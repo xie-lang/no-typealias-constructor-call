@@ -54,5 +54,19 @@ your `ReviewConfig.elm` file and add it to the config. E.g.:
     config : List Rule
     config =
         [ NoAppExprForTypeAlias.rule ]
-```
 
+```
+## Caution
+
+This rule does not apply to `map2` from `Json.Decode`, so the following code will NOT report an error
+
+```elm
+    type alias Point =
+        { x : Float, y : Float }
+
+    point : Decoder Point
+    point =
+        map2 Point
+            (field "x" float)
+            (field "y" float)
+```
