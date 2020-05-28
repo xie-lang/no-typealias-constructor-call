@@ -3,7 +3,6 @@
     "name": "lxierita/no-app-expression",
     "exposed-modules": ["NoAppExprForTypeAlias"],
     "summary": "elm-review rule to disallow using applicatione expression for type aliases",
-    "license": "MIT",
     "version": "1.0.0",
     "elm-version": "0.19.0 <= v < 0.20.0",
     "dependencies": {
