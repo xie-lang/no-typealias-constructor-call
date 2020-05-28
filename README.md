@@ -8,15 +8,15 @@ A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest
 For example, in the following code
 
 ```elm
-    type alias Foo = 
-        { foo : String
-        , bar : Bool
-        , baz : Float
-        }
+type alias Foo = 
+    { foo : String
+    , bar : Bool
+    , baz : Float
+    }
 
-    init : Foo
-    init = 
-        Foo "hello" True 0.2
+init : Foo
+init = 
+    Foo "hello" True 0.2
 ```
 
 `Foo "hello" True 0.2` will be marked as error. 
@@ -24,18 +24,18 @@ For example, in the following code
 To be rid of the error, simply do: 
 
 ```elm
-    type alias Foo = 
-        { foo : String
-        , bar : Bool
-        , baz : Float
-        }
+type alias Foo = 
+    { foo : String
+    , bar : Bool
+    , baz : Float
+    }
 
-    init : Foo
-    init = 
-        { foo = "hello"
-        , bar = True
-        , baz = 0.2    
-        }
+init : Foo
+init = 
+    { foo = "hello"
+    , bar = True
+    , baz = 0.2    
+    }
 ```
 
 
@@ -48,12 +48,12 @@ After adding [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-re
 your `ReviewConfig.elm` file and add it to the config. E.g.:
 
 ```elm
-    import NoAppExprForTypeAlias
-    import Review.Rule exposing (Rule)
+import NoAppExprForTypeAlias
+import Review.Rule exposing (Rule)
 
-    config : List Rule
-    config =
-        [ NoAppExprForTypeAlias.rule ]
+config : List Rule
+config =
+    [ NoAppExprForTypeAlias.rule ]
 
 ```
 ## Caution
@@ -61,12 +61,12 @@ your `ReviewConfig.elm` file and add it to the config. E.g.:
 This rule does not apply to `map2` from `Json.Decode`, so the following code will NOT report an error
 
 ```elm
-    type alias Point =
-        { x : Float, y : Float }
+type alias Point =
+    { x : Float, y : Float }
 
-    point : Decoder Point
-    point =
-        map2 Point
-            (field "x" float)
-            (field "y" float)
+point : Decoder Point
+point =
+    map2 Point
+        (field "x" float)
+        (field "y" float)
 ```
