@@ -2,7 +2,7 @@
 
 
 
-A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rule that disallows the use of [Application Expression](https://package.elm-lang.org/packages/stil4m/elm-syntax/latest/Elm-Syntax-Expression) for [Type Alias](https://package.elm-lang.org/packages/stil4m/elm-syntax/latest/Elm-Syntax-TypeAlias)
+A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rule that disallows the use of Application Expression for Type Alias
 
 
 For example, in the following code
