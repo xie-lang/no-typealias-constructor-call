@@ -1,6 +1,6 @@
 # NoAppExprForTypeAlias
 
----
+
 
 A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rule that disallows the use of [Application Expression](https://package.elm-lang.org/packages/stil4m/elm-syntax/latest/Elm-Syntax-Expression) for [Type Alias](https://package.elm-lang.org/packages/stil4m/elm-syntax/latest/Elm-Syntax-TypeAlias)
 
@@ -42,7 +42,7 @@ To be rid of the error, simply do:
 
 ## Usage
 
----
+
 
 After adding [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) to your project, import this rule from
 your `ReviewConfig.elm` file and add it to the config. E.g.:
