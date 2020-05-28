@@ -9,10 +9,10 @@ For example, in the following code
 
 ```elm
     type alias Foo = 
-    { foo : String
-    , bar : Bool
-    , baz : Float
-    }
+        { foo : String
+        , bar : Bool
+        , baz : Float
+        }
 
     init : Foo
     init = 
@@ -25,10 +25,10 @@ To be rid of the error, simply do:
 
 ```elm
     type alias Foo = 
-    { foo : String
-    , bar : Bool
-    , baz : Float
-    }
+        { foo : String
+        , bar : Bool
+        , baz : Float
+        }
 
     init : Foo
     init = 

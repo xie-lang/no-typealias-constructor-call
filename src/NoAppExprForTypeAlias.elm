@@ -11,51 +11,69 @@ import Elm.Syntax.Expression as Expression exposing (Expression)
 import Elm.Syntax.Node as Node exposing (Node)
 import Review.Rule as Rule exposing (Direction, Error, Rule, error)
 
+
+
 -- Use context to store the names of all type aliases in the module
+
 
 type alias Context =
     List String
-    
+
 
 {-| `NoAppExprForTypeAlias` forces you to use Record Expression for any type aliases declared in the current module
 
-## Configuration:
-config : List Rule
-config =
-[ NoAppExprForTypeAlias.rule ]
 
-## Example:
+## Configuration
+
+    config : List Rule
+    config =
+        [ NoAppExprForTypeAlias.rule ]
+
+
+## Example
+
 The following code will report an error
-```
-type alias Foo =
-{ foo : String
-, bar : Bool
-, baz : Float
-}
 
-init : Foo
-init =
-    Foo "hello" True 0.2
-```
+    type alias Foo =
+        { foo : String
+        , bar : Bool
+        , baz : Float
+        }
+
+    init : Foo
+    init =
+        Foo "hello" True 0.2
+
 To get rid of the error, do this:
 
-```
-type alias Foo =
-{ foo : String
-, bar : Bool
-, baz : Float
-}
+    type alias Foo =
+        { foo : String
+        , bar : Bool
+        , baz : Float
+        }
 
-init : Foo
-init =
-    { foo = "hello"
-    , bar = True
-    , baz = 0.2
-    }
-```
+    init : Foo
+    init =
+        { foo = "hello"
+        , bar = True
+        , baz = 0.2
+        }
+
+
+## Caution
+
+This rule does not apply to `map2` from `Json.Decode`, so the following code will NOT report an error
+
+    type alias Point =
+        { x : Float, y : Float }
+
+    point : Decoder Point
+    point =
+        map2 Point
+            (field "x" float)
+            (field "y" float)
 
 -}
-
 rule : Rule
 rule =
     Rule.newModuleRuleSchema "NoAppExprForTypeAlias" []
