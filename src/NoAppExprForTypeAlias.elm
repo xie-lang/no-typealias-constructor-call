@@ -103,28 +103,27 @@ declarationVisitor node direction context =
 
 expressionVisitor : Node Expression -> Direction -> Context -> ( List (Error {}), Context )
 expressionVisitor node direction context =
-    case Node.value node of
-        -- check if the expression uses Application Expression -}
-        Expression.Application n ->
-            -- if so, get the first value of the expression. if it has the type of `FunctionOrValue`, get the function name.
-            case List.head n |> Maybe.map Node.value of
-                Just (Expression.FunctionOrValue _ name) ->
+    case (direction, Node.value node )of
+        -- On enter, check if it uses application expression
+        -- if it does, get the first item of the expression list
+        ( Rule.OnEnter, Expression.Application (head :: _) )->
+            -- check if that item has the type of FunctionOrValue
+            case Node.value head of 
+                Expression.FunctionOrValue _ name ->
                     -- check if the context contains this name. In other words, check if this is the name of a type alias
-                    case ( direction, List.member name context ) of
-                        ( Rule.OnEnter, True ) ->
+                    if List.member name context then 
                             ( [ Rule.error
                                     { message = "No Application Expression"
                                     , details = [ "For better readability, specify the field names when applying values" ]
                                     }
                                     (Node.range node)
-                              ]
+                                ]
                             , context
                             )
+                    else 
+                        ( [], context )
 
-                        _ ->
-                            ( [], context )
-
-                _ ->
+                _ -> 
                     ( [], context )
 
         _ ->
