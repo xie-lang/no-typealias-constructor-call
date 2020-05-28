@@ -2,8 +2,11 @@
 
 
 
-A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rule that forbids using type alias record constructors to create a record. This rule does not apply to the `map` functions in `Json.Decode`. 
+A [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rule that forbids using type alias record constructors to create a record. 
 
+This rule does not apply to the `map` functions in `Json.Decode`. 
+
+## Examples 
 
 For example, in the following code
 
