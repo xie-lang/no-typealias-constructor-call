@@ -8,13 +8,13 @@ import Elm.Syntax.Declaration as Declaration exposing (Declaration)
 import Elm.Syntax.Node as Node exposing (Node)
 import Review.Rule as Rule exposing (Error, Rule, error, Direction)
 
-{-| Use context to store the names of all type aliases in the module -}
+-- Use context to store the names of all type aliases in the module 
 type alias Context = List String
 
 rule : Rule
 rule =
     Rule.newModuleRuleSchema "NoAppExprForTypeAlias" []
-    {-| visit all declarations and expressions in the current module -}
+    -- visit all declarations and expressions in the current module 
         |> Rule.withDeclarationVisitor declarationVisitor
         |> Rule.withExpressionVisitor expressionVisitor
         |> Rule.fromModuleRuleSchema
@@ -23,12 +23,12 @@ rule =
 declarationVisitor : Node Declaration -> Direction -> Context -> ( List (Error {}), Context)
 declarationVisitor node direction context = 
     case Node.value node of 
-    {-| check if the declaration has the type of [Type Alias]
-    (https://package.elm-lang.org/packages/stil4m/elm-syntax/latest/Elm-Syntax-TypeAlias)
-    -}
+    -- check if the declaration has the type of [Type Alias]
+    -- (https://package.elm-lang.org/packages/stil4m/elm-syntax/latest/Elm-Syntax-TypeAlias)
+
         Declaration.AliasDeclaration n-> 
             case direction of 
-            {-| if so, store the declaration name in the context -}
+            -- if so, store the declaration name in the context 
                 Rule.OnEnter -> 
                     ([], Node.value n.name :: context)
                 Rule.OnExit -> 
@@ -40,16 +40,12 @@ declarationVisitor node direction context =
 expressionVisitor : Node Expression -> Direction ->  Context -> (List (Error {}), Context)
 expressionVisitor node direction context =
     case Node.value node of 
-    -- check if the expression uses Application Expression
+    -- check if the expression uses Application Expression -}
         Expression.Application n -> 
-        {- if so, get the first value of the expression. if it has the type of `FunctionOrValue`, 
-            get the function name. 
-        -}
+        -- if so, get the first value of the expression. if it has the type of `FunctionOrValue`, get the function name. 
             case List.head n |> Maybe.map Node.value  of 
                 Just (Expression.FunctionOrValue _ name) -> 
-                {- check if the context contains this name. 
-                    In other words, check if this is the name of a type alias
-                -}
+                -- check if the context contains this name. In other words, check if this is the name of a type alias
                     case (direction, List.member name context ) of
                         (Rule.OnEnter, True) -> 
                             ([ Rule.error 
