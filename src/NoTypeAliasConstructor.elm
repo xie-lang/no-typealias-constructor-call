@@ -1,4 +1,4 @@
-module NoAppExprForTypeAlias exposing (rule)
+module NoTypeAliasConstructor exposing (rule)
 
 {-|
 
@@ -20,14 +20,14 @@ type alias Context =
     List String
 
 
-{-| `NoAppExprForTypeAlias` forces you to use Record Expression for any type aliases declared in the current module
+{-| `NoTypeAliasConstructor` forces you to use Record Expression for any type aliases declared in the current module
 
 
 ## Configuration
 
     config : List Rule
     config =
-        [ NoAppExprForTypeAlias.rule ]
+        [ NoTypeAliasConstructor.rule ]
 
 
 ## Example
@@ -76,7 +76,7 @@ This rule does not apply to `map` functions in `Json.Decode`, so the following c
 -}
 rule : Rule
 rule =
-    Rule.newModuleRuleSchema "NoAppExprForTypeAlias" []
+    Rule.newModuleRuleSchema "NoTypeAliasConstructor" []
         -- visit all declarations and expressions in the current module
         |> Rule.withDeclarationVisitor declarationVisitor
         |> Rule.withExpressionVisitor expressionVisitor
@@ -103,27 +103,28 @@ declarationVisitor node direction context =
 
 expressionVisitor : Node Expression -> Direction -> Context -> ( List (Error {}), Context )
 expressionVisitor node direction context =
-    case (direction, Node.value node )of
+    case ( direction, Node.value node ) of
         -- On enter, check if it uses application expression
         -- if it does, get the first item of the expression list
-        ( Rule.OnEnter, Expression.Application (head :: _) )->
+        ( Rule.OnEnter, Expression.Application (head :: _) ) ->
             -- check if that item has the type of FunctionOrValue
-            case Node.value head of 
+            case Node.value head of
                 Expression.FunctionOrValue _ name ->
                     -- check if the context contains this name. In other words, check if this is the name of a type alias
-                    if List.member name context then 
-                            ( [ Rule.error
-                                    { message = "No Application Expression"
-                                    , details = [ "For better readability, specify the field names when applying values" ]
-                                    }
-                                    (Node.range node)
-                                ]
-                            , context
-                            )
-                    else 
+                    if List.member name context then
+                        ( [ Rule.error
+                                { message = "No Application Expression"
+                                , details = [ "For better readability, specify the field names when applying values" ]
+                                }
+                                (Node.range node)
+                          ]
+                        , context
+                        )
+
+                    else
                         ( [], context )
 
-                _ -> 
+                _ ->
                     ( [], context )
 
         _ ->

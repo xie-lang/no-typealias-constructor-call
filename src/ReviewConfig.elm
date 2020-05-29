@@ -11,10 +11,10 @@ when inside the directory containing this file.
 
 -}
 
-import NoAppExprForTypeAlias
+import NoTypeAliasConstructor
 import Review.Rule exposing (Rule)
 
 
 config : List Rule
 config =
-    [ NoAppExprForTypeAlias.rule ]
+    [ NoTypeAliasConstructor.rule ]
