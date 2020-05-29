@@ -1,4 +1,4 @@
-# NoAppExprForTypeAlias
+# NoTypeAliasConstructor
 
 
 
@@ -51,12 +51,12 @@ After adding [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-re
 your `ReviewConfig.elm` file and add it to the config. E.g.:
 
 ```elm
-import NoAppExprForTypeAlias
+import NoTypeAliasConstructor
 import Review.Rule exposing (Rule)
 
 config : List Rule
 config =
-    [ NoAppExprForTypeAlias.rule ]
+    [ NoTypeAliasConstructor.rule ]
 
 ```
 ## Caution
