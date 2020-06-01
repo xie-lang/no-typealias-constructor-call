@@ -1,6 +1,6 @@
 {
   "name": "@lxierita/no-typealias-constructor-call",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -11,14 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lxierita/no-typealias-constructor-call.git"
+    "url": "git://github.com/lxierita/no-typealias-constructor-call.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lxierita/no-typealias-constructor-call/issues"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" 
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
   },
   "homepage": "https://github.com/lxierita/no-typealias-constructor#readme"
 }
