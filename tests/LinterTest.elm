@@ -1,6 +1,6 @@
 module LinterTest exposing (..)
 
-import NoTypeAliasConstructor exposing (rule)
+import NoTypeAliasConstructorCall exposing (rule)
 import Review.Test
 import Test exposing (Test, describe, test)
 

@@ -1,4 +1,4 @@
-module NoTypeAliasConstructor exposing (rule)
+module NoTypeAliasConstructorCall exposing (rule)
 
 {-|
 
@@ -20,14 +20,14 @@ type alias Context =
     List String
 
 
-{-| `NoTypeAliasConstructor` forces you to use Record Expression for any type aliases declared in the current module
+{-| `NoTypeAliasConstructorCall` forces you to use Record Expression for any type aliases declared in the current module
 
 
 ## Configuration
 
     config : List Rule
     config =
-        [ NoTypeAliasConstructor.rule ]
+        [ NoTypeAliasConstructorCall.rule ]
 
 
 ## Example
@@ -76,7 +76,7 @@ This rule does not apply to `map` functions in `Json.Decode`, so the following c
 -}
 rule : Rule
 rule =
-    Rule.newModuleRuleSchema "NoTypeAliasConstructor" []
+    Rule.newModuleRuleSchema "NoTypeAliasConstructorCall" []
         -- visit all declarations and expressions in the current module
         |> Rule.withDeclarationVisitor declarationVisitor
         |> Rule.withExpressionVisitor expressionVisitor
@@ -99,7 +99,6 @@ declarationVisitor node direction context =
 
         _ ->
             ( [], context )
-
 
 expressionVisitor : Node Expression -> Direction -> Context -> ( List (Error {}), Context )
 expressionVisitor node direction context =

@@ -1,4 +1,4 @@
-# NoTypeAliasConstructor
+# NoTypeAliasConstructorCall
 
 
 
@@ -51,17 +51,14 @@ After adding [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-re
 your `ReviewConfig.elm` file and add it to the config. E.g.:
 
 ```elm
-import NoTypeAliasConstructor
+import NoTypeAliasConstructorCall
 import Review.Rule exposing (Rule)
 
 config : List Rule
 config =
-    [ NoTypeAliasConstructor.rule ]
+    [ NoTypeAliasConstructorCall.rule ]
 
 ```
-## Caution
-
-This rule does not apply to the `map` functions in `Json.Decode`, so the following code will NOT report an error
 
 ```elm
 type alias Point =

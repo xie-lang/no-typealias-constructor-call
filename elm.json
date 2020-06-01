@@ -1,7 +1,7 @@
 {
     "type": "package",
-    "name": "lxierita/no-typealias-constructor",
-    "exposed-modules": ["NoTypeAliasConstructor"],
+    "name": "lxierita/no-typealias-constructor-call",
+    "exposed-modules": ["NoTypeAliasConstructorCall"],
     "summary": "elm-review rule to disallows using type alias record constructor",
     "license": "MIT",
     "version": "1.0.0",
