@@ -59,6 +59,7 @@ config =
     [ NoTypeAliasConstructorCall.rule ]
 
 ```
+The following code will not report an error
 
 ```elm
 type alias Point =
