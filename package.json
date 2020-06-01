@@ -1,0 +1,24 @@
+{
+  "name": "@lxierita/no-typealias-constructor-call",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lxierita/no-typealias-constructor-call.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lxierita/no-typealias-constructor-call/issues"
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" 
+  },
+  "homepage": "https://github.com/lxierita/no-typealias-constructor#readme"
+}
